@@ -1,0 +1,25 @@
+﻿Accounts: 14 | Connections: 20 | Labeled accounts: 4
+------------------------------------------------------------
+Epoch   1 | confidence on labeled: 0.491 | accuracy on unlabeled: 0.60
+Epoch  50 | confidence on labeled: 0.978 | accuracy on unlabeled: 1.00
+Epoch 100 | confidence on labeled: 0.994 | accuracy on unlabeled: 1.00
+Epoch 150 | confidence on labeled: 0.997 | accuracy on unlabeled: 1.00
+Epoch 200 | confidence on labeled: 0.998 | accuracy on unlabeled: 1.00
+Epoch 250 | confidence on labeled: 0.998 | accuracy on unlabeled: 1.00
+Epoch 300 | confidence on labeled: 0.999 | accuracy on unlabeled: 1.00
+------------------------------------------------------------
+Account     P(fake)   Predicted Actual  
+Asha          0.002   REAL      REAL    (labeled)
+Bala          0.001   REAL      REAL    (labeled)
+Chitra        0.002   REAL      REAL    
+Dev           0.002   REAL      REAL    
+Esha          0.073   REAL      REAL    
+Farid         0.014   REAL      REAL    
+Gita          0.004   REAL      REAL    
+Hari          0.048   REAL      REAL    
+bot_01        0.999   FAKE      FAKE    (labeled)
+bot_02        0.999   FAKE      FAKE    (labeled)
+bot_03        0.991   FAKE      FAKE    
+bot_04        0.999   FAKE      FAKE    
+bot_05        0.999   FAKE      FAKE    
+bot_06        0.977   FAKE      FAKE    
