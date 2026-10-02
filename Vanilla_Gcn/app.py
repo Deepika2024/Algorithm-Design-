@@ -7,7 +7,7 @@ import os
 import pandas as pd
 import streamlit as st
 
-FILE = "output.txt"
+FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "output.txt")
 
 st.set_page_config(page_title="GCN Fake Account Detection", page_icon="🕵️", layout="wide")
 
