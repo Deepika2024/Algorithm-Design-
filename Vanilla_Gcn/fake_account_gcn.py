@@ -6,9 +6,7 @@ Pure Python: no imports, no NumPy, no ML library. Everything built by hand.
 E = 2.718281828459045
 
 
-# ---------------------------------------------------------------
-# 1. Small helper functions (our own matrix library)
-# ---------------------------------------------------------------
+
 def zeros(r, c):
     return [[0.0] * c for _ in range(r)]
 
@@ -59,11 +57,8 @@ class RNG:
     def uniform(self, lo, hi):
         self.s = (1103515245 * self.s + 12345) % 2147483648
         return lo + (hi - lo) * (self.s / 2147483648)
-
-
-# ---------------------------------------------------------------
 # 2. Build the normalized graph:  A_hat = D^-1/2 (A + I) D^-1/2
-# ---------------------------------------------------------------
+
 def build_adjacency(n, edges):
     A = zeros(n, n)
     for u, v in edges:
@@ -83,11 +78,8 @@ def normalize(A):
             if A[i][j] != 0.0:
                 A_hat[i][j] = A[i][j] / ((deg[i] ** 0.5) * (deg[j] ** 0.5))
     return A_hat
-
-
-# ---------------------------------------------------------------
 # 3. The GCN model
-# ---------------------------------------------------------------
+
 class GCN:
     def __init__(self, in_dim, hidden, out_dim):
         rng = RNG()
@@ -121,9 +113,9 @@ class GCN:
                 self.W2[i][j] -= lr * dW2[i][j]
 
 
-# ---------------------------------------------------------------
+
 # 4. INPUT DATA
-# ---------------------------------------------------------------
+
 # Features (all scaled 0..1): [account_age, posts_per_day, following/followers ratio]
 names = ["Asha", "Bala", "Chitra", "Dev", "Esha", "Farid", "Gita", "Hari",      # 0-7
          "bot_01", "bot_02", "bot_03", "bot_04", "bot_05", "bot_06"]            # 8-13
@@ -147,9 +139,9 @@ known = {0: 0, 1: 0, 8: 1, 9: 1}
 true_labels = [0] * 8 + [1] * 6          # ground truth, used ONLY to measure accuracy
 
 
-# ---------------------------------------------------------------
+
 # 5. TRAIN
-# ---------------------------------------------------------------
+
 def main():
     n = len(X)
     A_hat = normalize(build_adjacency(n, edges))
@@ -171,7 +163,7 @@ def main():
             acc = sum(1 for i in test if argmax(P[i]) == true_labels[i]) / len(test)
             print(f"Epoch {epoch:3d} | confidence on labeled: {mean_conf:.3f} | accuracy on unlabeled: {acc:.2f}")
 
-    # ---------------- OUTPUT ----------------
+    # OUTPUT 
     P = model.forward(A_hat, X)
     print("-" * 60)
     print(f"{'Account':<10}{'P(fake)':>9}   {'Predicted':<10}{'Actual':<8}")
